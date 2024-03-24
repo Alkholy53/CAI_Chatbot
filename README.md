@@ -1,3 +1,5 @@
+![chatbot](chatbot.png)
+
 # Demo Chatbot for CAI Website
 
 This repository contains code for building a chatbot for the College of Artificial Intelligence (CAI) website. Two versions of the chatbot are implemented: one in Arabic using the AraBERT model and the other in English using the BERT model.
