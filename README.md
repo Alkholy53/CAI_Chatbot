@@ -18,10 +18,10 @@ The project follows the following steps:
 9. Load the model and start the conversation.
 
 ## Requirements
-Python (3.x)
-TensorFlow (2.x)
-Transformers library
-Flask (for deployment)
+1. TensorFlow (2.x).
+2. Transformers library.
+3. Flask (for deployment).
+
 
 ## Installation
 
