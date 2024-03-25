@@ -17,6 +17,12 @@ The project follows the following steps:
 8. Save the model.
 9. Load the model and start the conversation.
 
+## Requirements
+Python (3.x)
+TensorFlow (2.x)
+Transformers library
+Flask (for deployment)
+
 ## Installation
 
 To run the code, make sure you have the necessary packages installed:
