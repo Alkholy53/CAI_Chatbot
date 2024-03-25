@@ -4,60 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatbot</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="static/style.css">
+    
 </head>
 <body>
 
-    <h1>Chatbot Interaction for college of AI At AAST</h1>
-
-    <form id="chatForm">
-        <label for="userInput">User:</label>
+<div class="container">
+    <div class="header">Demo Chatbot for College of AI At AAST</div>
+    <div class="chat-container" id="chatHistoryContainer"></div>
+    <div class="input-container">
         <input type="text" id="userInput" name="userInput" required onkeydown="handleKeyPress(event)">
-        <button type="button" onclick="getResponse()">Submit</button>
-    </form>
-
-    <div id="chatHistoryContainer">
-        <!-- Chat history will be displayed here -->
+        <button type="button" onclick="getResponse()">Send <i class="fas fa-paper-plane"></i></button>
     </div>
+</div>
 
-    <script>
-        function handleKeyPress(event) {
-            if (event.key === "Enter") {
-                event.preventDefault();  // Prevent default form submission
-                getResponse();
-            }
+<script>
+    function handleKeyPress(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();  // Prevent default form submission
+            getResponse();
         }
+    }
 
-        function getResponse() {
-            var userInput = document.getElementById("userInput").value;
+    function getResponse() {
+        var userInput = document.getElementById("userInput").value;
 
-            // Send user input to the server using AJAX
-            fetch('/get_response', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: 'userInput=' + encodeURIComponent(userInput),
-            })
+        // Send user input to the server using AJAX
+        fetch('/get_response', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'userInput=' + encodeURIComponent(userInput),
+        })
             .then(response => response.json())
             .then(data => {
                 // Display the response in the chatHistoryContainer
                 var chatHistoryContainer = document.getElementById("chatHistoryContainer");
-                var userMessage = "<p><strong>User:</strong> " + userInput + "</p>";
-                var chatbotResponse = "<p><strong>Chatbot:</strong> " + data.response + "</p>";
+                var userMessage = "<div class='user-message'><strong>User:</strong> " + userInput + "</div>";
+                var chatbotResponse = "<div class='chatbot-message'><strong>Chatbot:</strong> " + data.response + "</div>";
 
                 // Append the current input and response to the chat history
                 chatHistoryContainer.innerHTML += userMessage + chatbotResponse;
 
-                // You can clear the input field if needed
+                // Clear the input field
                 document.getElementById("userInput").value = "";
 
                 // Scroll to the bottom to show the latest chat history
                 chatHistoryContainer.scrollTop = chatHistoryContainer.scrollHeight;
             })
             .catch(error => console.error('Error:', error));
-        }
-    </script>
+    }
+</script>
 
 </body>
 </html>
